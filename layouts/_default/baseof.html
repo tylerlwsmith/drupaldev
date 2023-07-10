@@ -24,7 +24,22 @@
           <a class="app-layout__header-title" href="/">{{ .Site.Title }}</a>
         </header>
 
-        <aside class="app-layout__sidebar">Documentation TBA</aside>
+        <aside class="app-layout__sidebar">
+          {{ $query := where .Site.RegularPages "Type" "documentation" }}
+          {{ if gt (len $query) 0 }}
+            <ul>
+              {{ range $query }}
+                <li>
+                  <a href="{{ .Permalink }}">
+                    {{ .Title }}
+                  </a>
+                </li>
+              {{ end }}
+            </ul>
+          {{ else }}
+            Documentation coming soon.
+          {{ end }}
+        </aside>
 
         <main class="app-layout__main">
           {{- block "main" . }}
