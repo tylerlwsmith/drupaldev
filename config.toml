@@ -1,3 +1,7 @@
 baseURL = 'https://drupaldev.org/'
 languageCode = 'en-US'
 title = 'DrupalDev.org'
+
+[markup]
+  [markup.tableOfContents]
+    ordered = true
