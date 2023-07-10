@@ -1,0 +1,3 @@
+baseURL = 'https://drupaldev.org/'
+languageCode = 'en-us'
+title = 'Drupal Dev'
