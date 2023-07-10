@@ -1,1 +1,11 @@
-{{ define "main" }} {{ .Title }} {{ end }}
+{{ define "pageTitle" }}
+  <title>Drupal Dev</title>
+{{ end }}
+
+{{ define "main" }}
+  <h1>{{ .Title }}</h1>
+
+  <div>
+    {{ .Content }}
+  </div>
+{{ end }}
