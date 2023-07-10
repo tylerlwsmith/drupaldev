@@ -18,10 +18,33 @@
     <script src="{{ $scripts.Permalink }}" defer></script>
   </head>
   <body>
-    {{- partial "header.html" . -}}
-    <div id="content">
-      {{- block "main" . }}{{- end }}
-    </div>
-    {{- partial "footer.html" . -}}
+    {{ block "layout" . }}
+      <div class="app-layout">
+        <header class="app-layout__header">
+          <a class="app-layout__header-title" href="/">{{ .Site.Title }}</a>
+        </header>
+
+        <aside class="app-layout__sidebar">Documentation TBA</aside>
+
+        <main class="app-layout__main">
+          {{- block "main" . }}
+            <h1>{{ .Title }}</h1>
+
+            <div>
+              {{ .Content }}
+            </div>
+          {{- end }}
+        </main>
+
+        <footer class="app-layout__footer">
+          <a
+            class="app-layout__footer-link"
+            href="https://github.com/tylerlwsmith/drupaldev"
+          >
+            GitHub
+          </a>
+        </footer>
+      </div>
+    {{ end }}
   </body>
 </html>
