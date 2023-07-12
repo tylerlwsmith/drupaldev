@@ -1,0 +1,16 @@
+{{- if gt (len .pages) 0 }}
+  {{ $level := .level }}
+  <ul class="sidebar__menu-items sidebar__menu-items--level-{{ $level }}">
+    {{- range .pages }}
+      <li class="sidebar__menu-item">
+        <a
+          class="sidebar__link sidebar__link--level-{{ $level }}"
+          href="{{ .Permalink }}"
+        >
+          {{- .Title -}}
+        </a>
+        {{- partial "sidebar-menu.html" (dict "pages" .Pages "level" (add $level 1)) }}
+      </li>
+    {{- end }}
+  </ul>
+{{- end }}

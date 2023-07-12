@@ -1,47 +1,58 @@
 <!DOCTYPE html>
 <html lang="{{ .Site.LanguageCode }}">
   <head>
-    <!-- Hide from Google results while there's no content worth showing. -->
+    <!-- Hide from Google results until there's content worth showing. -->
     <meta name="robots" content="noindex, nofollow" />
 
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap"
+      rel="stylesheet"
+    />
+
     <title>
-      {{ block "pageTitle" . }}{{ .Title }} | {{ .Site.Title }}{{ end }}
+      {{- block "pageTitle" . }}{{ .Title }} | {{ .Site.Title }}{{ end -}}
     </title>
 
-    {{ $styles := resources.Get "styles/app.scss" | toCSS | minify | fingerprint }}
+    <meta
+      name="description"
+      content="
+      {{- block "pageDescription" . -}}
+        {{ trim (plainify .Content | replaceRE "(\\s)" " ") " " | truncate 155 }}
+      {{- end -}}
+      "
+    />
+
+    {{- $styles := resources.Get "styles/app.scss" | toCSS | minify | fingerprint }}
     <link rel="stylesheet" href="{{ $styles.Permalink }}" />
 
-    {{ $scripts := resources.Get "scripts/app.js" | js.Build | minify | fingerprint }}
+    {{- $scripts := resources.Get "scripts/app.js" | js.Build | minify | fingerprint }}
     <script src="{{ $scripts.Permalink }}" defer></script>
   </head>
   <body>
-    {{ block "layout" . }}
-      <div class="app-layout">
-        <header class="app-layout__header">
-          <a class="app-layout__header-title" href="/">{{ .Site.Title }}</a>
+    {{- block "layout" . }}
+      <div class="layout">
+        <header class="header">
+          <a class="header-title" href="/">{{ .Site.Title }}</a>
         </header>
 
-        <aside class="app-layout__sidebar">
-          {{ $query := where .Site.RegularPages "Type" "documentation" }}
-          {{ if gt (len $query) 0 }}
-            <ul>
-              {{ range $query }}
-                <li>
-                  <a href="{{ .Permalink }}">
-                    {{ .Title }}
-                  </a>
-                </li>
-              {{ end }}
-            </ul>
-          {{ else }}
-            Documentation coming soon.
-          {{ end }}
+        <aside class="sidebar">
+          <nav>
+            {{- $query := where .Site.Sections.ByWeight "Section" "documentation" -}}
+            {{- if gt (len $query) 0 }}
+              {{- partial "sidebar-menu.html" (dict "pages" (index $query 0).Pages "level" 1) }}
+            {{- else }}
+              Documentation coming soon.
+            {{- end }}
+          </nav>
         </aside>
 
-        <main class="app-layout__main">
+        <main class="main">
           {{- block "main" . }}
             <h1>{{ .Title }}</h1>
 
@@ -51,15 +62,8 @@
           {{- end }}
         </main>
 
-        <footer class="app-layout__footer">
-          <a
-            class="app-layout__footer-link"
-            href="https://github.com/tylerlwsmith/drupaldev"
-          >
-            GitHub
-          </a>
-        </footer>
+        {{ partial "footer.html" . }}
       </div>
-    {{ end }}
+    {{- end }}
   </body>
 </html>

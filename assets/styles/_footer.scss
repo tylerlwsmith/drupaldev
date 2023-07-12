@@ -1,0 +1,18 @@
+.footer {
+  grid-area: footer;
+  padding: 10px 40px;
+  background: #064771;
+  color: #fff;
+}
+
+.footer__items {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  list-style: none;
+  padding: 0;
+}
+
+.footer__link {
+  color: inherit;
+}
