@@ -37,8 +37,9 @@
   <body>
     {{- block "body" . }}
       <div class="layout">
-        {{- partial "header.html" . }}
-        {{- partial "sidebar.html" . }}
+        {{ $sidebarElementId := "sidebar" }}
+        {{- partial "header.html" (dict "context" . "sidebarElementId" $sidebarElementId ) }}
+        {{- partial "sidebar.html" (dict "context" . "sidebarElementId" $sidebarElementId ) }}
 
 
         <main class="main">

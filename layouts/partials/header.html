@@ -1,3 +1,16 @@
-<header class="header">
-  <a class="header-title" href="/">{{ .Site.Title }}</a>
-</header>
+{{- $sidebarElementId := .sidebarElementId -}}
+{{- $context := .context -}}
+
+{{- with $context }}
+  <header class="header">
+    <button
+      id="mobile-menu-toggle"
+      class="header__mobile-menu-toggle"
+      aria-controls="{{ $sidebarElementId }}"
+    >
+      {{ partial "icons/menu.svg" . }}
+    </button>
+
+    <a class="header__title" href="/">{{ .Site.Title }}</a>
+  </header>
+{{- end }}

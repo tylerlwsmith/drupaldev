@@ -1,10 +1,20 @@
 .header {
+  display: flex;
+  align-items: center;
   grid-area: header;
   padding: 10px 20px;
   background: #0678be;
 }
 
-.header-title {
+.header__mobile-menu-toggle {
+  margin-right: 0.75rem;
+  display: none;
+  @media (max-width: $mobile-max-width) {
+    display: inline-block;
+  }
+}
+
+.header__title {
   color: #fff;
   text-decoration: none;
 }

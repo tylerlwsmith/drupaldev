@@ -4,6 +4,8 @@
   background: #eee;
   @media (max-width: $mobile-max-width) {
     display: none;
+    position: absolute;
+    height: 100%;
   }
 }
 

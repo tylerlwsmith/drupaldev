@@ -1,7 +1,9 @@
-{{- if gt (len .pages) 0 }}
-  {{ $level := .level }}
+{{- $level := .level -}}
+{{- $pages := .pages -}}
+
+{{- if gt (len $pages) 0 }}
   <ul class="sidebar__menu-items sidebar__menu-items--level-{{ $level }}">
-    {{- range .pages }}
+    {{- range $pages }}
       <li class="sidebar__menu-item">
         <a
           class="sidebar__link sidebar__link--level-{{ $level }}"

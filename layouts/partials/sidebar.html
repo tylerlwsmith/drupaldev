@@ -1,10 +1,16 @@
-<aside class="sidebar">
-  <nav>
-    {{- $query := where .Site.Sections.ByWeight "Section" "documentation" -}}
-    {{- if gt (len $query) 0 }}
-      {{- partial "sidebar-menu.html" (dict "pages" (index $query 0).Pages "level" 1) }}
-    {{- else }}
-      Documentation coming soon.
-    {{- end }}
-  </nav>
-</aside>
+{{- $sidebarElementId := .sidebarElementId -}}
+{{- $context := .context -}}
+
+{{- with $context }}
+  <aside id="{{ $sidebarElementId }}" class="sidebar">
+    <nav>
+      {{- $query := where .Site.Sections.ByWeight "Section" "documentation" -}}
+
+      {{- if gt (len $query) 0 }}
+        {{- partial "sidebar-menu.html" (dict "pages" (index $query 0).Pages "level" 1) }}
+      {{- else }}
+        Documentation coming soon.
+      {{- end }}
+    </nav>
+  </aside>
+{{ end }}
