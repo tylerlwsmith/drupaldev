@@ -4,9 +4,10 @@
 {{- with $context }}
   <header class="header">
     <button
-      id="mobile-menu-toggle"
-      class="header__mobile-menu-toggle"
+      id="mobile-menu-open"
+      class="header__mobile-menu-open"
       aria-controls="{{ $sidebarElementId }}"
+      aria-label="Open menu"
     >
       {{ partial "icons/menu.svg" . }}
     </button>

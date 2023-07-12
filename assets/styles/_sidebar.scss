@@ -3,9 +3,21 @@
   padding: 40px 20px;
   background: #eee;
   @media (max-width: $mobile-max-width) {
-    display: none;
     position: absolute;
+    padding: 10px 20px;
     height: 100%;
+    width: 220px;
+    &:not(.sidebar--expanded) {
+      display: none;
+    }
+  }
+}
+
+.sidebar__mobile-menu-close {
+  display: none;
+  margin-bottom: 20px;
+  @media (max-width: $mobile-max-width) {
+    display: inline-block;
   }
 }
 

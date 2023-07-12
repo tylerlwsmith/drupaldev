@@ -2,7 +2,19 @@
 {{- $context := .context -}}
 
 {{- with $context }}
-  <aside id="{{ $sidebarElementId }}" class="sidebar">
+  <aside
+    id="{{ $sidebarElementId }}"
+    class="sidebar"
+    data-expanded-class-name="sidebar--expanded"
+  >
+    <button
+      id="mobile-menu-close"
+      class="sidebar__mobile-menu-close"
+      aria-controls="{{ $sidebarElementId }}"
+      aria-label="Open menu"
+    >
+      {{ partial "icons/cross.svg" . }}
+    </button>
     <nav>
       {{- $query := where .Site.Sections.ByWeight "Section" "documentation" -}}
 
