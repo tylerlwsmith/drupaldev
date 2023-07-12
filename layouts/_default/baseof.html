@@ -35,29 +35,18 @@
     <script src="{{ $scripts.Permalink }}" defer></script>
   </head>
   <body>
-    {{- block "layout" . }}
+    {{- block "body" . }}
       <div class="layout">
-        <header class="header">
-          <a class="header-title" href="/">{{ .Site.Title }}</a>
-        </header>
+        {{- partial "header.html" . }}
+        {{- partial "sidebar.html" . }}
 
-        <aside class="sidebar">
-          <nav>
-            {{- $query := where .Site.Sections.ByWeight "Section" "documentation" -}}
-            {{- if gt (len $query) 0 }}
-              {{- partial "sidebar-menu.html" (dict "pages" (index $query 0).Pages "level" 1) }}
-            {{- else }}
-              Documentation coming soon.
-            {{- end }}
-          </nav>
-        </aside>
 
         <main class="main">
           {{- block "main" . }}
             <h1>{{ .Title }}</h1>
 
             <div>
-              {{ .Content }}
+              {{- .Content }}
             </div>
           {{- end }}
         </main>

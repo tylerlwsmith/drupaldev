@@ -11,6 +11,11 @@
   flex-wrap: wrap;
   list-style: none;
   padding: 0;
+  column-gap: 20px;
+}
+
+.footer__item {
+  font-size: 0.875rem;
 }
 
 .footer__link {

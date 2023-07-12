@@ -7,4 +7,11 @@
     "header header"
     "sidebar main"
     "footer footer";
+
+  @media (max-width: $mobile-max-width) {
+    grid-template-areas:
+      "header header"
+      "main main"
+      "footer footer";
+  }
 }

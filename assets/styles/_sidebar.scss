@@ -2,6 +2,9 @@
   grid-area: sidebar;
   padding: 40px 20px;
   background: #eee;
+  @media (max-width: $mobile-max-width) {
+    display: none;
+  }
 }
 
 .sidebar__menu-items {
